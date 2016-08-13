@@ -3,7 +3,7 @@
 
 /*bool isOddPrime(int n) {
 	bool isPrime = true;
-	//Odd numbers are never divisible by even  numbers, 
+	//Odd numbers are never divisible by even  numbers,
 	//so don't even bother checking even numbers!
 	//
 	//All odd numbers less than 9 are prime numbers,
@@ -39,12 +39,12 @@ int main() {
 	std::cout << "Answer: " << x << std::endl;
 }*/
 
-bool isPrime(int n) {
+/*bool isPrime(int n) {
 	if (n == 1)
 		return false;
 	if (n < 4) //2 and 3 are prime
 		return true;
-	if (n % 2 == 0) 
+	if (n % 2 == 0)
 		return false;
 	if (n < 9) //5 and 7 are prime (4, 6 and 8 already excluded)
 		return true;
@@ -53,9 +53,9 @@ bool isPrime(int n) {
 	int r = floor(sqrt(n));
 	int f = 5;
 	while (f <= r) {
-		if (n % f == 0) 
+		if (n % f == 0)
 			return false;
-		if (n % (f + 2) == 0) 
+		if (n % (f + 2) == 0)
 			return false;
 		f = f + 6;
 	}
@@ -71,6 +71,44 @@ int main() {
 		if (isPrime(candidate)) {
 			count++;
 			//std::cout << candidate << " " << count << std::endl;
+		}
+	}
+	std::cout << candidate << std::endl;
+}*/
+
+bool isPrime(int n) {
+	if (n == 1)
+		return false;
+	if (n < 4)
+		return true;
+	if (n % 2 == 0)
+		return false;
+	if (n < 9)
+		return true;
+	if (n % 3 == 0)
+		return false;
+
+	int r = floor(sqrt(n));
+	int f = 5;
+	while (f <= r) {
+		if (n % f == 0)
+			return false;
+		if (n % (f + 2) == 0)
+			return false;
+		f+=6;
+	}
+	return true;
+
+}
+
+int main() {
+	int limit = 10001;
+	int count = 1;
+	int candidate = 1;
+	while (count != limit) {
+		candidate+=2;
+		if (isPrime(candidate)) {
+			count++;
 		}
 	}
 	std::cout << candidate << std::endl;
